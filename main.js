@@ -146,7 +146,7 @@ function openConfig() {
   ]);
   Menu.setApplicationMenu(appMenu);
 
-  configWindow = new BrowserWindow({width: 800, height: 600});
+  configWindow = new BrowserWindow({width: 1024, height: 768});
 
   configWindow.loadUrl('file://' + __dirname + '/index.html');
 

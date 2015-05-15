@@ -1,32 +1,57 @@
-<md-card>
-  <md-card-content>
-    <md-input-container>
-      <label>GitLab URL</label>
-      <input type="url" ng-model="gitlab.url">
-    </md-input-container>
-    <md-input-container>
-      <label>GitLab API</label>
-      <input type="url" ng-model="gitlab.api">
-    </md-input-container>
-    <md-input-container>
-      <label>Private Token</label>
-      <input type="text" ng-model="gitlab.token">
-    </md-input-container>
-  </md-card-content>
-</md-card>
+<md-tabs md-dynamic-height class="config">
+  <md-tab label="Basic">
+    <md-card>
+      <md-card-content>
+        <md-input-container>
+          <label>GitLab URL</label>
+          <input type="url" ng-model="gitlab.url">
+        </md-input-container>
+        <md-input-container>
+          <label>GitLab API</label>
+          <input type="url" ng-model="gitlab.api">
+        </md-input-container>
+        <md-input-container>
+          <label>Private Token</label>
+          <input type="text" ng-model="gitlab.token">
+        </md-input-container>
+      </md-card-content>
+    </md-card>
 
 
-<md-card>
-  <md-card-content>
-    <md-input-container>
-      <label>Fetch Interval(s)</label>
-      <input type="number" ng-model="gitlab.interval">
-    </md-input-container>
-  </md-card-content>
-</md-card>
+    <md-card>
+      <md-card-content>
+        <md-input-container>
+          <label>Fetch Interval(s)</label>
+          <input type="number" ng-model="gitlab.interval">
+        </md-input-container>
+      </md-card-content>
+    </md-card>
 
-<div layout="row" layout-align="end center">
-  <md-button class="md-raised" ng-click="savePrefs()">
-    Apply
-  </md-button>
-</div>
+    <div layout="row" layout-align="end center">
+      <md-button class="md-raised" ng-click="savePrefs()">
+        Apply
+      </md-button>
+    </div>
+  </md-tab>
+
+  <md-tab label="Repos" md-on-select="refreshRepos()">
+    <p ng-if="gitlab.length < 3">You should config the basic settings first!</p>
+    <div layout="row" layout-align="end center">
+      <md-button class="md-raised" ng-click="refreshRepos()">
+        Refresh
+      </md-button>
+    </div>
+    <md-content>
+      <md-list>
+        <md-list-item class="md-3-line" ng-repeat="project in projects">
+          <img ng-src="{{project.avatar_url || 'resources/favicon-96x96.png'}}" height="96" width="96" class="face">
+          <div class="md-list-project-text">
+            <h3>{{project.name_with_namespace}}</h3>
+            <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+          </div>
+          <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-tab>
+</md-tabs>
