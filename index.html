@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>GitLab App</title>
+  <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="app/styles/main.css">
+
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
 
   <script src="app/config/config.js"></script>
   <script src="app/app.js"></script>
 </head>
 <body>
+  <md-toolbar layout="row" class="md-medium-tall">
+    <md-button class="menu" ng-click="ul.toggleList()" aria-label="Show User List">
+      <md-icon md-svg-icon="menu" ></md-icon>
+    </md-button>
+    <h1 class="app-title">GitLab App</h1>
+  </md-toolbar>
   <div ng-view></div>
 </body>
 </html>
