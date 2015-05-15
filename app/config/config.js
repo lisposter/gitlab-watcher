@@ -7,7 +7,7 @@ var app = remote.require('app');
 var configPath = app.getPath('userData') + '/config.json';
 
 angular.module('gitlab.config', [])
-.controller('PrefsCtrl', ['$http', '$scope', function($http, $scope) {
+.controller('PrefsCtrl', ['$http', '$scope', '$utils', function($http, $scope, $utils) {
 
   /*
     Basic
@@ -27,10 +27,26 @@ angular.module('gitlab.config', [])
     Repos
    */
 
-  $scope.refreshRepos = function() {
-    $http.get($scope.gitlab.api + '/projects')
-      .success(function(res) {
+  function load(pageNum) {
+    pageNum = pageNum || 1;
+    return $http.get($scope.gitlab.api + '/projects?page=' + pageNum)
+  }
+
+  $scope.page = {};
+  $scope.refreshRepos = function(pageNum) {
+    pageNum = pageNum || 1;
+    load(1)
+      .success(function(res, status, headers) {
         $scope.projects = res;
+        $scope.page = $utils.pageInfo(headers('Link'));
+      });
+  };
+
+  $scope.loadMore = function(page) {
+    load($scope.page.next)
+      .success(function(res, status, headers) {
+        $scope.projects = $scope.projects.concat(res);
+        $scope.page = $utils.pageInfo(headers('Link'));
       });
   };
 

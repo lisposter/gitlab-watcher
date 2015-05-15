@@ -30,4 +30,34 @@ angular.module('gitlab', ['ngRoute', 'gitlab.config', 'ngMaterial'])
   if (gitlab.token) {
     $http.defaults.headers.common['PRIVATE-TOKEN'] = gitlab.token;
   }
+}])
+
+.directive('scrollEnd', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+
+        elm.bind('scroll', function() {
+          console.log('heh');
+            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                scope.$apply(attr.scrollEnd);
+            }
+        });
+    };
+})
+
+.factory('$utils', [function() {
+  return {
+    pageInfo: function(string) {
+      if (!string) {
+        return;
+      }
+      var obj = {};
+      string.split(',').forEach(function(itm) {
+        if (itm.indexOf('rel="next"') > 0) {
+          obj.next = /page=(\d+)/.exec(itm)[1];
+        }
+      });
+      return obj;
+    }
+  };
 }]);
