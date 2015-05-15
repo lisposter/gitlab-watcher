@@ -1,0 +1,27 @@
+{
+  "name": "gitlab-app",
+  "version": "0.1.0",
+  "description": "app for watching gitlab",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron-packager": "^3.3.0",
+    "electron-prebuilt": "^0.25.2"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . $npm_package_productName --prune --asar --ignore=node_modules/electron-prebuilt --ignore=node_modules/electron-packager --ignore=.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lisposter/gitlab-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lisposter/gitlab-app/issues"
+  },
+  "homepage": "https://github.com/lisposter/gitlab-app",
+  "keywords": ["gitlab"],
+  "author": "Leigh Zhu",
+  "license": "MIT"
+}
