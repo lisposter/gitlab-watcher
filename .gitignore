@@ -38,3 +38,5 @@ node_modules
 sftp-config.json
 
 testing.js
+
+bower_components/*

@@ -2,7 +2,7 @@
   "name": "gitlab-app",
   "version": "0.1.0",
   "description": "app for watching gitlab",
-  "main": "index.js",
+  "main": "main.js",
   "dependencies": {
   },
   "devDependencies": {
