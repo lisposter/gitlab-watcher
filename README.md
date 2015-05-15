@@ -1,20 +1,35 @@
 # gitlab-app
-[![NPM version](https://img.shields.io/npm/v/gitlab-app.svg?style=flat)](https://www.npmjs.org/package/gitlab-app)
 
-app for watching gitlab
+simple app to watching and notify gitlab events, based on GitHub's Electron.
 
 ------
 
-## Installation
+## Install with source
+
+* Install electron
 
 ```bash
-$ npm install gitlab-app
+$ npm install electron-prebuilt -g
 ```
 
-## Example
+* Clone repo
 
-## Usage
+```sh
+git clone git@github.com:lisposter/gitlab-app.git
+```
 
-## License
+* Install deps
+
+```sh
+$ npm i
+$ bower i
+```
+
+* Launch
+
+```sh
+$ electron /path/to/repo
+```
+
 
 MIT © [Leigh Zhu](#)
