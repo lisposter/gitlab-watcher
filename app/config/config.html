@@ -1,0 +1,32 @@
+<md-card>
+  <md-card-content>
+    <md-input-container>
+      <label>GitLab URL</label>
+      <input type="url" ng-model="gitlab.url">
+    </md-input-container>
+    <md-input-container>
+      <label>GitLab API</label>
+      <input type="url" ng-model="gitlab.api">
+    </md-input-container>
+    <md-input-container>
+      <label>Private Token</label>
+      <input type="text" ng-model="gitlab.token">
+    </md-input-container>
+  </md-card-content>
+</md-card>
+
+
+<md-card>
+  <md-card-content>
+    <md-input-container>
+      <label>Fetch Interval(s)</label>
+      <input type="number" ng-model="gitlab.interval">
+    </md-input-container>
+  </md-card-content>
+</md-card>
+
+<div layout="row" layout-align="end center">
+  <md-button class="md-raised" ng-click="savePrefs()">
+    Apply
+  </md-button>
+</div>
