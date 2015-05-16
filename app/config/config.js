@@ -29,7 +29,7 @@ angular.module('gitlab.config', [])
 
   function load(pageNum) {
     pageNum = pageNum || 1;
-    return $http.get($scope.gitlab.api + '/projects?page=' + pageNum)
+    return $http.get($scope.gitlab.api + '/projects?order_by=last_activity_at&page=' + pageNum);
   }
 
   $scope.page = {};
