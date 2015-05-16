@@ -4,6 +4,8 @@
   "description": "app for watching gitlab",
   "main": "main.js",
   "dependencies": {
+    "node-notifier": "^4.2.1",
+    "request": "^2.55.0"
   },
   "devDependencies": {
     "electron-packager": "^3.3.0",
@@ -21,7 +23,9 @@
     "url": "https://github.com/lisposter/gitlab-app/issues"
   },
   "homepage": "https://github.com/lisposter/gitlab-app",
-  "keywords": ["gitlab"],
+  "keywords": [
+    "gitlab"
+  ],
   "author": "Leigh Zhu",
   "license": "MIT"
 }
