@@ -1,0 +1,22 @@
+{
+  "name": "gitlab-app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lisposter/gitlab-app",
+  "authors": [
+    "Leigh Zhu <i@zhuli.me>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "angular-route": "~1.3.15",
+    "angular-material": "~0.9.4",
+    "normalize-css": "~3.0.3"
+  }
+}
