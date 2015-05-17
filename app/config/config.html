@@ -37,6 +37,9 @@
   <md-tab label="Repos" md-on-select="refreshRepos()">
     <p ng-if="gitlab.length < 3">You should config the basic settings first!</p>
     <div layout="row" layout-align="end center">
+      <md-button class="md-raised" ng-click="applySubscription()">
+        Apply
+      </md-button>
       <md-button class="md-raised" ng-click="refreshRepos()">
         Refresh
       </md-button>
@@ -47,7 +50,12 @@
           <img ng-src="{{project.avatar_url || 'resources/favicon-96x96.png'}}" height="96" width="96" class="face">
           <div class="md-list-project-text">
             <h3>{{project.name_with_namespace}}</h3>
-            <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+            <div layout="row" layout-align="space-between center">
+              <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+              <md-switch ng-model="subscribe[project.id]" aria-label="Subscribe">
+                {{subscribe[project.id] ? 'Subscribed' : 'Unsubscribed'}}
+              </md-switch>
+            </div>
           </div>
           <md-divider md-inset ng-if="!$last"></md-divider>
         </md-list-item>
