@@ -1,7 +1,6 @@
 {
-  "name": "gitlab-app",
-  "version": "0.0.0",
-  "homepage": "https://github.com/lisposter/gitlab-app",
+  "name": "gitlab-watcher",
+  "homepage": "https://github.com/lisposter/gitlab-watcher",
   "authors": [
     "Leigh Zhu <i@zhuli.me>"
   ],

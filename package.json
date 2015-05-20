@@ -1,5 +1,5 @@
 {
-  "name": "gitlab-app",
+  "name": "gitlab-watcher",
   "version": "0.1.0",
   "description": "app for watching gitlab",
   "main": "main.js",
@@ -8,21 +8,18 @@
     "request": "^2.55.0"
   },
   "devDependencies": {
-    "electron-packager": "^3.3.0",
-    "electron-prebuilt": "^0.25.2"
   },
   "scripts": {
-    "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --prune --asar --ignore=node_modules/electron-prebuilt --ignore=node_modules/electron-packager --ignore=.git"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/lisposter/gitlab-app.git"
+    "url": "git://github.com/lisposter/gitlab-watcher.git"
   },
   "bugs": {
-    "url": "https://github.com/lisposter/gitlab-app/issues"
+    "url": "https://github.com/lisposter/gitlab-watcher/issues"
   },
-  "homepage": "https://github.com/lisposter/gitlab-app",
+  "homepage": "https://github.com/lisposter/gitlab-watcher",
   "keywords": [
     "gitlab"
   ],

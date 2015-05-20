@@ -1,4 +1,4 @@
-# gitlab-app
+# gitlab-watcher
 
 simple app to watching and notify gitlab events, based on GitHub's Electron.
 
@@ -15,7 +15,7 @@ $ npm install electron-prebuilt -g
 * Clone repo
 
 ```sh
-git clone git@github.com:lisposter/gitlab-app.git
+git clone git@github.com:lisposter/gitlab-watcher.git
 ```
 
 * Install deps
