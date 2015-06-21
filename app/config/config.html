@@ -52,7 +52,7 @@
             <h3>{{project.name_with_namespace}}</h3>
             <div layout="row" layout-align="space-between center">
               <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
-              <md-switch ng-model="subscribe[project.id]" aria-label="Subscribe">
+              <md-switch ng-model="_status[project.id]" ng-change="applySubscription(_status[project.id], project.id, project.path_with_namespace)" aria-label="Subscribe">
                 {{subscribe[project.id] ? 'Subscribed' : 'Unsubscribed'}}
               </md-switch>
             </div>

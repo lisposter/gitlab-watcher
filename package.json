@@ -4,11 +4,13 @@
   "description": "app for watching gitlab",
   "main": "main.js",
   "dependencies": {
+    "async": "^1.2.1",
+    "lodash": "^3.9.3",
     "node-notifier": "^4.2.1",
+    "open": "0.0.5",
     "request": "^2.55.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "electron ."
   },

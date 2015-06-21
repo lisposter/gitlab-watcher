@@ -28,6 +28,7 @@ angular.module('gitlab.config', [])
    */
 
   $scope.subscribe = $scope.gitlab.repos || {};
+  $scope._status = {};
 
   function load(pageNum) {
     pageNum = pageNum || 1;
@@ -52,10 +53,19 @@ angular.module('gitlab.config', [])
       });
   };
 
-  $scope.applySubscription = function() {
-    $scope.gitlab.repos = Object.keys($scope.subscribe).reduce(function(memo, curr) {
-      return memo.concat($scope.subscribe[curr] ? curr : []);
-    }, []);
+  $scope.applySubscription = function(status, id, proj) {
+    console.log(status, id, proj);
+    // $scope.gitlab.repos = Object.keys($scope.subscribe).reduce(function(memo, curr) {
+    //   return memo.concat($scope.subscribe[curr] ? curr : []);
+    // }, []);
+
+    if (status === true) {
+      $scope.subscribe[id] = proj;
+    } else {
+      delete $scope.subscribe[id];
+    }
+
+    $scope.gitlab.repos = $scope.subscribe;
 
     fs.writeFileSync(configPath, JSON.stringify($scope.gitlab) || {});
   };
