@@ -54,10 +54,6 @@ angular.module('gitlab.config', [])
   };
 
   $scope.applySubscription = function(status, id, proj) {
-    console.log(status, id, proj);
-    // $scope.gitlab.repos = Object.keys($scope.subscribe).reduce(function(memo, curr) {
-    //   return memo.concat($scope.subscribe[curr] ? curr : []);
-    // }, []);
 
     if (status === true) {
       $scope.subscribe[id] = proj;
