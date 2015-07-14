@@ -13,7 +13,7 @@ app.on('ready', function(){
   menu.app();
 
   // start watcher
-  watcher.watching();
+  // watcher.watching();
 });
 
 // prevent app close when all windows are closed
