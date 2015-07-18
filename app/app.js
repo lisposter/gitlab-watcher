@@ -11,7 +11,8 @@ angular.module('gitlab', ['ngRoute', 'gitlab.config', 'ngMaterial'])
   $routeProvider
    .when('/prefs/', {
       templateUrl: 'app/config/config.html',
-      controller: 'PrefsCtrl'
+      controller: 'PrefsCtrl',
+      controllerAs: 'vm'
     })
     .otherwise('/prefs/');
 

@@ -4,15 +4,15 @@
       <md-card-content>
         <md-input-container>
           <label>GitLab URL</label>
-          <input type="url" ng-model="gitlab.url">
+          <input type="url" ng-model="vm.gitlab.url">
         </md-input-container>
         <md-input-container>
           <label>GitLab API</label>
-          <input type="url" ng-model="gitlab.api">
+          <input type="url" ng-model="vm.gitlab.api">
         </md-input-container>
         <md-input-container>
           <label>Private Token</label>
-          <input type="text" ng-model="gitlab.token">
+          <input type="text" ng-model="vm.gitlab.token">
         </md-input-container>
       </md-card-content>
     </md-card>
@@ -22,13 +22,13 @@
       <md-card-content>
         <md-input-container>
           <label>Fetch Interval(s)</label>
-          <input type="number" ng-model="gitlab.interval">
+          <input type="number" ng-model="vm.gitlab.interval">
         </md-input-container>
       </md-card-content>
     </md-card>
 
     <div layout="row" layout-align="end center">
-      <md-button class="md-raised" ng-click="savePrefs()">
+      <md-button class="md-raised" ng-click="vm.savePrefs()">
         Apply
       </md-button>
     </div>
@@ -37,10 +37,10 @@
   <md-tab label="Repos" md-on-select="refreshRepos()">
     <p ng-if="gitlab.length < 3">You should config the basic settings first!</p>
     <div layout="row" layout-align="end center">
-      <md-button class="md-raised" ng-click="applySubscription()">
+      <md-button class="md-raised" ng-click="vm.applySubscription()">
         Apply
       </md-button>
-      <md-button class="md-raised" ng-click="refreshRepos()">
+      <md-button class="md-raised" ng-click="vm.refreshRepos()">
         Refresh
       </md-button>
     </div>
@@ -52,7 +52,7 @@
             <h3>{{project.name_with_namespace}}</h3>
             <div layout="row" layout-align="space-between center">
               <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
-              <md-switch ng-model="_status[project.id]" ng-change="applySubscription(_status[project.id], project.id, project.path_with_namespace)" aria-label="Subscribe">
+              <md-switch ng-model="vm._status[project.id]" ng-change="applySubscription(_status[project.id], project.id, project.path_with_namespace)" aria-label="Subscribe">
                 {{subscribe[project.id] ? 'Subscribed' : 'Unsubscribed'}}
               </md-switch>
             </div>
@@ -60,7 +60,7 @@
           <md-divider md-inset ng-if="!$last"></md-divider>
         </md-list-item>
         <md-list-item layout-align="center center">
-          <md-button class="md-raised" ng-click="loadMore()">
+          <md-button class="md-raised" ng-click="vm.loadMore()">
             More...
           </md-button>
         </md-list-item>
