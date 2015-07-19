@@ -8,10 +8,10 @@
   var configPath = app.getPath('userData') + '/config.json';
 
   angular
-    .module('gitlab.config', [])
+    .module('gitlab.config')
     .controller('PrefsCtrl', PrefsCtrl);
 
-    function PrefsCtrl($http, $scope, $utils) {
+    function PrefsCtrl($http, $scope, dataservice) {
       var vm = this;
       vm.gitlab = fs.existsSync(configPath) ? require(configPath) : {};
 
@@ -31,26 +31,21 @@
       vm.subscribe = vm.gitlab.repos || {};
       vm._status = {};
 
-      function load(pageNum) {
-        pageNum = pageNum || 1;
-        return $http.get(vm.gitlab.api + '/projects?order_by=last_activity_at&page=' + pageNum);
-      }
-
       vm.page = {};
       vm.refreshRepos = function(pageNum) {
         pageNum = pageNum || 1;
-        load(1)
-          .success(function(res, status, headers) {
-            vm.projects = res;
-            vm.page = $utils.pageInfo(headers('Link'));
+        dataservice.loadRepos(1)
+          .then(function(res) {
+            vm.projects = res.repos;
+            vm.page = res.pager;
           });
       };
 
       vm.loadMore = function(page) {
-        load(vm.page.next)
-          .success(function(res, status, headers) {
-            vm.projects = vm.projects.concat(res);
-            vm.page = $utils.pageInfo(headers('Link'));
+        dataservice.loadRepos(vm.page.next)
+          .then(function(res) {
+            vm.projects = vm.projects.concat(res.repos);
+            vm.page = res.pager;
           });
       };
 

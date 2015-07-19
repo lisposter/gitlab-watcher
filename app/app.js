@@ -44,21 +44,4 @@ angular.module('gitlab', ['ngRoute', 'gitlab.config', 'ngMaterial'])
             }
         });
     };
-})
-
-.factory('$utils', [function() {
-  return {
-    pageInfo: function(string) {
-      if (!string) {
-        return;
-      }
-      var obj = {};
-      string.split(',').forEach(function(itm) {
-        if (itm.indexOf('rel="next"') > 0) {
-          obj.next = /page=(\d+)/.exec(itm)[1];
-        }
-      });
-      return obj;
-    }
-  };
-}]);
+});

@@ -34,7 +34,7 @@
     </div>
   </md-tab>
 
-  <md-tab label="Repos" md-on-select="refreshRepos()">
+  <md-tab label="Repos" md-on-select="vm.refreshRepos()">
     <p ng-if="gitlab.length < 3">You should config the basic settings first!</p>
     <div layout="row" layout-align="end center">
       <md-button class="md-raised" ng-click="vm.applySubscription()">
@@ -46,7 +46,7 @@
     </div>
     <md-content>
       <md-list>
-        <md-list-item class="md-3-line" ng-repeat="project in projects">
+        <md-list-item class="md-3-line" ng-repeat="project in vm.projects">
           <img ng-src="{{project.avatar_url || 'resources/favicon-96x96.png'}}" height="96" width="96" class="face">
           <div class="md-list-project-text">
             <h3>{{project.name_with_namespace}}</h3>
