@@ -2,11 +2,11 @@
   'use strict';
 
   const fs = require('fs');
-  var remote = require('remote');
-  var app = remote.require('app');
+  const remote = require('remote');
+  const app = remote.require('app');
 
   const configPath = app.getPath('userData') + '/config.json';
-  var gitlab = fs.existsSync(configPath) ? require(configPath) : {};
+  const gitlab = fs.existsSync(configPath) ? require(configPath) : {};
 
   angular
     .module('gitlab.config')
@@ -14,8 +14,18 @@
 
     function dataservice($http) {
       return {
+        saveConfig: saveConfig,
         loadRepos: loadRepos
       };
+
+      function saveConfig(config) {
+        if (config.token) {
+          $http.defaults.headers.common['PRIVATE-TOKEN'] = config.token;
+        }
+
+        // write into configsave
+        fs.writeFileSync(configPath, JSON.stringify(config) || {});
+      }
 
       function loadRepos(pageNum) {
         pageNum = pageNum || 1;

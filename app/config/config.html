@@ -1,70 +1,71 @@
 <md-tabs md-dynamic-height class="config">
   <md-tab label="Basic">
-    <md-card>
-      <md-card-content>
-        <md-input-container>
-          <label>GitLab URL</label>
-          <input type="url" ng-model="vm.gitlab.url">
-        </md-input-container>
-        <md-input-container>
-          <label>GitLab API</label>
-          <input type="url" ng-model="vm.gitlab.api">
-        </md-input-container>
-        <md-input-container>
-          <label>Private Token</label>
-          <input type="text" ng-model="vm.gitlab.token">
-        </md-input-container>
-      </md-card-content>
-    </md-card>
+    <div ng-controller="PrefsCtrl as vm">
+      <md-card>
+        <md-card-content>
+          <md-input-container>
+            <label>GitLab URL</label>
+            <input type="url" ng-model="vm.gitlab.url">
+          </md-input-container>
+          <md-input-container>
+            <label>GitLab API</label>
+            <input type="url" ng-model="vm.gitlab.api">
+          </md-input-container>
+          <md-input-container>
+            <label>Private Token</label>
+            <input type="text" ng-model="vm.gitlab.token">
+          </md-input-container>
+        </md-card-content>
+      </md-card>
 
 
-    <md-card>
-      <md-card-content>
-        <md-input-container>
-          <label>Fetch Interval(s)</label>
-          <input type="number" ng-model="vm.gitlab.interval">
-        </md-input-container>
-      </md-card-content>
-    </md-card>
+      <md-card>
+        <md-card-content>
+          <md-input-container>
+            <label>Fetch Interval(s)</label>
+            <input type="number" ng-model="vm.gitlab.interval">
+          </md-input-container>
+        </md-card-content>
+      </md-card>
 
-    <div layout="row" layout-align="end center">
-      <md-button class="md-raised" ng-click="vm.savePrefs()">
-        Apply
-      </md-button>
+      <div layout="row" layout-align="end center">
+        <md-button class="md-raised" ng-click="vm.savePrefs()">
+          Apply
+        </md-button>
+      </div>
     </div>
   </md-tab>
 
-  <md-tab label="Repos" md-on-select="vm.refreshRepos()">
-    <p ng-if="gitlab.length < 3">You should config the basic settings first!</p>
-    <div layout="row" layout-align="end center">
-      <md-button class="md-raised" ng-click="vm.applySubscription()">
-        Apply
-      </md-button>
-      <md-button class="md-raised" ng-click="vm.refreshRepos()">
-        Refresh
-      </md-button>
-    </div>
-    <md-content>
-      <md-list>
-        <md-list-item class="md-3-line" ng-repeat="project in vm.projects">
-          <img ng-src="{{project.avatar_url || 'resources/favicon-96x96.png'}}" height="96" width="96" class="face">
-          <div class="md-list-project-text">
-            <h3>{{project.name_with_namespace}}</h3>
-            <div layout="row" layout-align="space-between center">
-              <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
-              <md-switch ng-model="vm._status[project.id]" ng-change="applySubscription(_status[project.id], project.id, project.path_with_namespace)" aria-label="Subscribe">
-                {{subscribe[project.id] ? 'Subscribed' : 'Unsubscribed'}}
-              </md-switch>
+  <md-tab label="Repos">
+    <div ng-controller="SubscribeCtrl as vm">
+      <p ng-if="gitlab.length < 3">You should config the basic settings first!</p>
+      <div layout="row" layout-align="end center">
+        <md-button class="md-raised" ng-click="vm.refreshRepos()">
+          Refresh
+        </md-button>
+      </div>
+      <md-content>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="project in vm.projects">
+            <img ng-src="{{project.avatar_url || 'resources/favicon-96x96.png'}}" height="96" width="96" class="face">
+            <div class="md-list-project-text">
+              <h3>{{project.name_with_namespace}}</h3>
+              <div layout="row" layout-align="space-between center">
+                <p>{{project.last_activity_at | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+                <md-switch ng-model="vm._status[project.id]" ng-change="applySubscription(_status[project.id], project.id, project.path_with_namespace)" aria-label="Subscribe">
+                  {{subscribe[project.id] ? 'Subscribed' : 'Unsubscribed'}}
+                </md-switch>
+              </div>
             </div>
-          </div>
-          <md-divider md-inset ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item layout-align="center center">
-          <md-button class="md-raised" ng-click="vm.loadMore()">
-            More...
-          </md-button>
-        </md-list-item>
-      </md-list>
-    </md-content>
+            <md-divider md-inset ng-if="!$last"></md-divider>
+          </md-list-item>
+          <md-list-item layout-align="center center">
+            <md-button class="md-raised" ng-click="vm.loadRepos()">
+              More...
+            </md-button>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
   </md-tab>
 </md-tabs>
