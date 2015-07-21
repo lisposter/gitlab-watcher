@@ -1,12 +1,6 @@
 (function() {
   'use strict';
 
-  var remote = require('remote');
-  var fs = require('fs');
-  var app = remote.require('app');
-
-  var configPath = app.getPath('userData') + '/config.json';
-
   angular
     .module('gitlab.config')
     .controller('PrefsCtrl', PrefsCtrl)
@@ -14,27 +8,22 @@
 
     function PrefsCtrl($http, $scope, dataservice) {
       var vm = this;
-      vm.gitlab = fs.existsSync(configPath) ? require(configPath) : {};
-
+      vm.gitlab = dataservice.loadConfig();
       vm.subscribe = vm.gitlab.repos || {};
-
       vm.savePrefs = savePrefs;
 
       function savePrefs() {
         dataservice.saveConfig(vm.gitlab);
       }
-
-
-
     }
 
     function SubscribeCtrl(dataservice) {
       var vm = this;
-
+      vm.gitlab = dataservice.loadConfig();
       vm.projects = [];
       vm._status = {};
-      vm.loadRepos = loadRepos;
       vm.page = {};
+      vm.loadRepos = loadRepos;
       vm.refreshRepos = refreshRepos;
       vm.applySubscription = applySubscription;
 
@@ -42,6 +31,11 @@
 
       function init() {
         refreshRepos(1);
+        vm._status = Object.keys(vm.gitlab.repos).reduce(function(memo, curr) {
+          console.log(curr);
+          memo[curr] = true;
+          return memo;
+        }, {});
       }
 
       function refreshRepos(pageNum) {
@@ -58,7 +52,6 @@
       }
 
       function applySubscription(status, id, proj) {
-
         if (status === true) {
           vm.subscribe[id] = proj;
         } else {

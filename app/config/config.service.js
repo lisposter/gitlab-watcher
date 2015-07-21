@@ -14,9 +14,14 @@
 
     function dataservice($http) {
       return {
+        loadConfig: loadConfig,
         saveConfig: saveConfig,
         loadRepos: loadRepos
       };
+
+      function loadConfig() {
+        return fs.existsSync(configPath) ? require(configPath) : {};
+      }
 
       function saveConfig(config) {
         if (config.token) {
