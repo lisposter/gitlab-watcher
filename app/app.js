@@ -45,7 +45,6 @@
           var raw = elm[0];
 
           elm.bind('scroll', function() {
-            console.log('heh');
               if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
                   scope.$apply(attr.scrollEnd);
               }
