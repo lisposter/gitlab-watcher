@@ -6,7 +6,7 @@
     .controller('PrefsCtrl', PrefsCtrl)
     .controller('SubscribeCtrl', SubscribeCtrl);
 
-    function PrefsCtrl($http, $scope, dataservice) {
+    function PrefsCtrl(dataservice) {
       var vm = this;
       vm.gitlab = dataservice.loadConfig();
       vm.subscribe = vm.gitlab.repos || {};
@@ -32,7 +32,6 @@
       function init() {
         refreshRepos(1);
         vm._status = Object.keys(vm.gitlab.repos).reduce(function(memo, curr) {
-          console.log(curr);
           memo[curr] = true;
           return memo;
         }, {});
