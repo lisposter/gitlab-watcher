@@ -1,10 +1,10 @@
 # gitlab-watcher
 
-simple app to watching and notify gitlab events, based on GitHub's Electron.
+simple app to watching and notify gitlab issues event, based on GitHub's Electron.
 
 ------
 
-## Install with source
+## Install
 
 * Install electron
 
